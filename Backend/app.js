@@ -1,4 +1,6 @@
 const express = require("express");
+const { userAuth } = require("./Middlewares/userId");
+const { getTotal } = require("./Middlewares/productTotal");
 const app = express();
 
 // NODEJS ROUTES
@@ -16,7 +18,13 @@ app.get("/about", function (req, res) {
   res.write(`<h1>About Us</h1>`);
   res.end();
 });
-
+app.get("/login", userAuth, function (req, res) {
+  console.log(req.user);
+});
+app.get("/product-total", getTotal, function (req, res) {
+  console.log(req.totalVal + 1000);
+  
+});
 app.listen(3000, function () {
   console.log("SERVER IS RUNNING");
 });
