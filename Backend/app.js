@@ -23,8 +23,8 @@ app.get("/login", userAuth, function (req, res) {
 });
 app.get("/product-total", getTotal, function (req, res) {
   console.log(req.totalVal + 1000);
-  
 });
+// FRONTEND -> HUGE DATA -> BACKEND (200)
 app.listen(3000, function () {
   console.log("SERVER IS RUNNING");
 });
