@@ -9,13 +9,23 @@ const AddBlogs = ({ setOpen }) => {
       [name]: value,
     }));
   };
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch("http://localhost:3000/get-client", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
   return (
     <>
       <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
         <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
           <h2 className="text-xl font-bold mb-4">Submit Your Information</h2>
-          <form>
-            <div className="mb-4">
+          <form onSubmit={handleSubmit}>
+            {/* <div className="mb-4">
               <label htmlFor="file" className="block text-gray-700 mb-2">
                 Upload File:
               </label>
@@ -26,7 +36,7 @@ const AddBlogs = ({ setOpen }) => {
                 id="file"
                 className="border border-gray-300 rounded-md p-2 w-full"
               />
-            </div>
+            </div> */}
             <div className="mb-4">
               <label htmlFor="name" className="block text-gray-700 mb-2">
                 Name:
@@ -70,7 +80,8 @@ const AddBlogs = ({ setOpen }) => {
                 Submit
               </button>
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   setOpen(false);
                 }}
                 type="button"
